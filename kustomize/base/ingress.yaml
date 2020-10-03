@@ -7,10 +7,10 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-    - host: api.bratur.net
+    - host: bratur.net
       http:
         paths:
           - backend:
               serviceName: web
               servicePort: 80
-            path: /web
+            path: /
