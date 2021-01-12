@@ -20,11 +20,6 @@ const api = () => {
             const headers = new Headers()
             headers.append("Content-Type", "application/json")
 
-            // ! dev
-            headers.append("Access-Control-Allow-Headers", "*")
-            headers.append("Access-Control-Allow-Origin", "*")
-            headers.append("Access-Control-Allow-Methods", "*")
-
             if (token != null)
                 headers.append('Authorization', `Bearer ${token}`)
 
@@ -34,7 +29,7 @@ const api = () => {
                 body: JSON.stringify(model)
             }
 
-            console.log(options.body)
+            // console.log(options.body)
 
             const request = new Request(`${apiUrl}/${path}`, options)
 

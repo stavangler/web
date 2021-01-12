@@ -6,6 +6,8 @@ import api from '../common/api'
 export const Trip = types.model("Trip", {
     id: types.identifierNumber,
     title: types.string,
+    description: types.string,
+    imgUrl: types.string,
     //...
 })
 

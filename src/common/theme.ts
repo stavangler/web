@@ -62,4 +62,16 @@ export const theme = createMuiTheme({
             fontFamily: "Roboto",
         },
     },
+    overrides: {
+        MuiCssBaseline: {
+            '@global': {
+                '*:focus': {
+                    outline: 'none !important'
+                },
+                html: {
+                    WebkitFontSmoothing: 'auto',
+                },
+            },
+        },
+    },
 })
