@@ -8,28 +8,34 @@ export const Trip = types.model("Trip", {
     title: types.string,
     description: types.string,
     imgUrl: types.string,
+    date: types.string
     //...
 })
 
+// export const Entry = types.model("Entry", {
+//     id: types.identifierNumber,
+//     //...
+// })
 
 export const TripStore = types
     .model("TripStore", {
         isLoading: true,
-        trips: types.map(Trip)
+        trips: types.map(Trip),
+        //entries: types.map(Entry)
     })
     .views((self) => ({
-        get root(): any {
-            return getParent(self)
-        },
+        // get root(): any {
+        //     return getParent(self)
+        // },
         get allTrips() {
             return values(self.trips)
         }
     }))
     .actions((self) => {
-        function markIsLoading(isLoading: boolean) {
+        const markIsLoading = (isLoading: boolean) => {
             self.isLoading = isLoading
         }
-        function updateTrips(items: any) {
+        const updateTrips = (items: any) => {
             values(self.trips)
             items.forEach((item: any) => {
                 self.trips.put(item)

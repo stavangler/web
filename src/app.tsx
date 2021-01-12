@@ -1,29 +1,29 @@
 import React from 'react'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import { BrowserRouter, Route, Switch } from "react-router-dom"
-import { ThemeProvider } from '@material-ui/core'
-import CssBaseline from "@material-ui/core/CssBaseline"
-import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
-import Typography from '@material-ui/core/Typography'
-import Button from '@material-ui/core/Button'
-import IconButton from '@material-ui/core/IconButton'
-import MenuIcon from '@material-ui/icons/Menu'
-import { theme } from "./common/theme"
+import { ThemeProvider, CssBaseline, AppBar, Toolbar, Typography, Button, IconButton, Avatar } from '@material-ui/core'
+import { theme } from './common/theme'
 import ProtectedRoute from './components/protected-route'
 import DashboardPage from './pages/dashboard-page'
 import TripPage from './pages/trip-page'
+import * as Icon from 'react-feather'
+import store from './stores/store'
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: { flexGrow: 1 },
         menuButton: { marginRight: theme.spacing(2) },
         title: { flexGrow: 1 },
+        small: {
+            width: theme.spacing(3),
+            height: theme.spacing(3),
+        },
     }),
 )
 
 const App = () => {
     const classes = useStyles()
+    const { user } = store.userStore
     return (
         <>
             <BrowserRouter>
@@ -32,12 +32,26 @@ const App = () => {
                     <AppBar position="static" elevation={0}>
                         <Toolbar>
                             <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                                <MenuIcon />
+                                <Icon.Menu size={16} />
                             </IconButton>
                             <Typography variant="h6" className={classes.title}>
-                                News
+                                Bratur
                             </Typography>
-                            <Button color="inherit">Login</Button>
+                            {
+                                user.isAuthenticated ?
+                                    <>
+                                        <IconButton title="New trip">
+                                            <Icon.PlusCircle size={16} />
+                                        </IconButton>
+                                        <IconButton title="User">
+                                            <Avatar className={classes.small} />
+                                        </IconButton>
+                                    </>
+                                    :
+                                    <IconButton title="Login">
+                                        <Icon.LogIn size={16} />
+                                    </IconButton>
+                            }
                         </Toolbar>
                     </AppBar>
                     <Switch>

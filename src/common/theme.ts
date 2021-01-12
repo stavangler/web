@@ -1,15 +1,15 @@
-import { createMuiTheme } from "@material-ui/core"
+import { createMuiTheme } from '@material-ui/core'
 
 export const knowitColors = {
-    black: "#333333",
-    white: "#F1F0ED",
-    forest: "#4B6455",
-    pear: "#B7DEBD",
-    flamingo: "#FAC0B1",
-    mint: "#DBEEDE",
-    lollipop: "#FF00FF",
-    sand: "#E4E1DB",
-    clay: "#A5B1AA",
+    black: '#333333',
+    white: '#F1F0ED',
+    forest: '#4B6455',
+    pear: '#B7DEBD',
+    flamingo: '#FAC0B1',
+    mint: '#DBEEDE',
+    lollipop: '#FF00FF',
+    sand: '#E4E1DB',
+    clay: '#A5B1AA',
 }
 
 export const theme = createMuiTheme({
@@ -34,43 +34,42 @@ export const theme = createMuiTheme({
         text: {
             primary: knowitColors.black,
         },
-        type: "light",
+        type: 'light',
     },
     typography: {
         fontFamily: [
-            "Arial",
-            "Liberation Sans",
-            "Frutiger",
-            "Frutiger Linotype",
-            "Univers",
-            "Calibri",
-            "Gill Sans",
-            "Gill Sans MT",
-            "Myriad Pro",
-            "Myriad",
-            "DejaVu Sans Condensed",
-            "Nimbus Sans L",
-            "Tahoma",
-            "Geneva",
-            "Helvetica Neue",
-            "Helvetica",
-            "sans-serif",
+            'Arial',
+            'Liberation Sans',
+            'Frutiger',
+            'Frutiger Linotype',
+            'Univers',
+            'Calibri',
+            'Gill Sans',
+            'Gill Sans MT',
+            'Myriad Pro',
+            'Myriad',
+            'DejaVu Sans Condensed',
+            'Nimbus Sans L',
+            'Tahoma',
+            'Geneva',
+            'Helvetica Neue',
+            'Helvetica',
+            'sans-serif',
         ].join(","),
-        fontSize: 16,
+        fontSize: 14,
+        
         htmlFontSize: 16,
         button: {
-            fontFamily: "Roboto",
+            fontWeight: 'bold',
+            fontFamily: 'Roboto',
         },
     },
     overrides: {
         MuiCssBaseline: {
             '@global': {
-                '*:focus': {
-                    outline: 'none !important'
-                },
-                html: {
-                    WebkitFontSmoothing: 'auto',
-                },
+                '*:focus': { outline: 'none !important' },
+                button: { borderRadius: '0 !important' },
+                html: { WebkitFontSmoothing: 'auto' },
             },
         },
     },

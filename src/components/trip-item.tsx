@@ -1,9 +1,10 @@
 import React from 'react'
-import { Card, CardActionArea, CardActions, CardContent, CardMedia, Button, Typography, CardHeader, Avatar, IconButton } from '@material-ui/core'
+import { Card, CardActionArea, CardActions, CardContent, CardMedia, Button, Typography, CardHeader, Avatar, IconButton, Box } from '@material-ui/core'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import { Paper } from '@material-ui/core'
 import { theme } from "../common/theme"
 import * as Icon from 'react-feather'
+import utils from '../common/utils'
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -12,7 +13,11 @@ const useStyles = makeStyles((theme: Theme) =>
             // maxWidth: 345,
         },
         media: { height: 140 },
-        content: { margin: 16 }
+        content: { margin: 16 },
+        flexSplit: {
+            display: 'flex',
+            justifyContent: 'space-between'
+        }
     }),
 )
 
@@ -27,34 +32,23 @@ const TripItem = (props: any) => {
                     image={props.data.imgUrl}
                     title="Contemplative Reptile"
                 />
-                <CardHeader
-                    // avatar={
-                    //     <Avatar aria-label="recipe" className={classes.avatar}>
-                    //         R
-                    //     </Avatar>
-                    // }
-                    // action={
-                    //     <IconButton aria-label="settings">
-                    //         <Icon.Menu size="16" />
-                    //     </IconButton>
-                    // }
+                <CardHeader className={classes.content}
                     title={props.data.title}
-                    subheader="September 14, 2016"
+                    subheader={utils.shortDate(props.data.date)}
                 />
                 <CardContent className={classes.content}>
                     <Typography variant="body2" color="textSecondary" component="p">
-                        Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-                        across all continents except Antarctica
+                        {props.data.description}
                     </Typography>
                 </CardContent>
             </CardActionArea>
-            <CardActions>
-                <Button size="small" color="primary">
-                    Share
-                </Button>
-                <Button size="small" color="primary">
-                    Learn More
-                </Button>
+            <CardActions className={classes.flexSplit}>
+                <IconButton title="Agenda">
+                    <Icon.Clipboard size={16} />
+                </IconButton>
+                <IconButton title="Edit trip">
+                    <Icon.Edit2 size={16} />
+                </IconButton>
             </CardActions>
         </Card>
     )
