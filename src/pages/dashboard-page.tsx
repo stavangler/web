@@ -16,8 +16,8 @@ const DashboardPage = observer(() => {
 
     store.tripStore.loadTrips() // ! test test ...
 
-    console.log(store.tripStore.isLoading)
-    console.log(allTrips)
+    // console.log(store.tripStore.isLoading)
+    // console.log(allTrips)
 
     return (
         <>
@@ -27,9 +27,8 @@ const DashboardPage = observer(() => {
                     :
                     <Box m={4}>
                         <Grid container spacing={3}>
-                            {
+                            { 
                                 allTrips.map((t: any) =>
-
                                     <Grid item xs={12} sm={6} key={t.id}>
                                         <TripItem data={t}></TripItem>
                                     </Grid>

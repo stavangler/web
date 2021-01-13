@@ -10,7 +10,7 @@ export const User = types.model("User", {
 export const UserStore = types
     .model("UserStore", {
         name: '',
-        isAuthenticated: false, 
+        isAuthenticated: true, //... 
         token: ''
         //...
     })

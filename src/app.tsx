@@ -11,9 +11,9 @@ import store from './stores/store'
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
-        root: { flexGrow: 1 },
-        menuButton: { marginRight: theme.spacing(2) },
-        title: { flexGrow: 1 },
+        // root: { flexGrow: 1 },
+        stdButton: { width:40, height:40 }, // todo: move to common styles
+        title: { marginLeft:8, flexGrow: 1 },
         small: {
             width: theme.spacing(3),
             height: theme.spacing(3),
@@ -31,7 +31,7 @@ const App = () => {
                     <CssBaseline />
                     <AppBar position="static" elevation={0}>
                         <Toolbar>
-                            <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+                            <IconButton edge="start" className={classes.stdButton} color="inherit" aria-label="menu">
                                 <Icon.Menu size={16} />
                             </IconButton>
                             <Typography variant="h6" className={classes.title}>
@@ -40,15 +40,15 @@ const App = () => {
                             {
                                 user.isAuthenticated ?
                                     <>
-                                        <IconButton title="New trip">
+                                        <IconButton title="New trip" className={classes.stdButton}>
                                             <Icon.PlusCircle size={16} />
                                         </IconButton>
-                                        <IconButton title="User">
+                                        <IconButton title="User" className={classes.stdButton}>
                                             <Avatar className={classes.small} />
                                         </IconButton>
                                     </>
                                     :
-                                    <IconButton title="Login">
+                                    <IconButton title="Login" className={classes.stdButton}>
                                         <Icon.LogIn size={16} />
                                     </IconButton>
                             }

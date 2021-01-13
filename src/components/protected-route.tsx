@@ -1,22 +1,9 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Redirect } from 'react-router-dom'
-//import { useStores } from '../stores/store'
+import store from '../stores/store'
 
-const ProtectedRoute = (props: any) => {
+const ProtectedRoute = (props: any) =>
+    store.userStore?.isAuthenticated ?
+        <props.component /> : <Redirect to={{ pathname: '/login' }} />
 
-    //const { authStore } = useStores()
-    const authStore:any = {} //.........
-
-    // useEffect(() => {
-    // }, [])
-
-    const Component = props.component
-
-    return authStore.session?.isAuthenticated ? (
-        <Component />
-    ) : (
-            <Redirect to={{ pathname: '/login' }} />
-        )
-
-}
 export default ProtectedRoute

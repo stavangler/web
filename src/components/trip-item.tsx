@@ -5,6 +5,7 @@ import { Paper } from '@material-ui/core'
 import { theme } from "../common/theme"
 import * as Icon from 'react-feather'
 import utils from '../common/utils'
+import { useHistory } from 'react-router-dom'
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -12,6 +13,7 @@ const useStyles = makeStyles((theme: Theme) =>
             borderRadius: 0,
             // maxWidth: 345,
         },
+        stdButton: { width:40, height:40 }, // todo: move to common styles
         media: { height: 140 },
         content: { margin: 16 },
         flexSplit: {
@@ -22,10 +24,11 @@ const useStyles = makeStyles((theme: Theme) =>
 )
 
 const TripItem = (props: any) => {
+    const history = useHistory()
     const classes = useStyles()
 
     return (
-        <Card className={classes.root}>
+        <Card className={classes.root} onClick={() => history.push(`trip/${props.data.id}`)}>
             <CardActionArea>
                 <CardMedia
                     className={classes.media}
@@ -43,10 +46,10 @@ const TripItem = (props: any) => {
                 </CardContent>
             </CardActionArea>
             <CardActions className={classes.flexSplit}>
-                <IconButton title="Agenda">
+                <IconButton title="Agenda" className={classes.stdButton}>
                     <Icon.Clipboard size={16} />
                 </IconButton>
-                <IconButton title="Edit trip">
+                <IconButton title="Edit trip" className={classes.stdButton}>
                     <Icon.Edit2 size={16} />
                 </IconButton>
             </CardActions>
