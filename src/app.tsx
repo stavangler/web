@@ -7,13 +7,13 @@ import ProtectedRoute from './components/protected-route'
 import DashboardPage from './pages/dashboard-page'
 import TripPage from './pages/trip-page'
 import * as Icon from 'react-feather'
-import store from './stores/store'
+import { userStore } from './stores/user-store'
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         // root: { flexGrow: 1 },
-        stdButton: { width:40, height:40 }, // todo: move to common styles
-        title: { marginLeft:8, flexGrow: 1 },
+        stdButton: { width: 40, height: 40 }, // todo: move to common styles
+        title: { marginLeft: 8, flexGrow: 1 },
         small: {
             width: theme.spacing(3),
             height: theme.spacing(3),
@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const App = () => {
     const classes = useStyles()
-    const { user } = store.userStore
+    // const { user } = store.userStore
     return (
         <>
             <BrowserRouter>
@@ -38,7 +38,7 @@ const App = () => {
                                 Bratur
                             </Typography>
                             {
-                                user.isAuthenticated ?
+                                userStore?.isAuthenticated ?
                                     <>
                                         <IconButton title="New trip" className={classes.stdButton}>
                                             <Icon.PlusCircle size={16} />
@@ -59,7 +59,10 @@ const App = () => {
                         {/* <Route path='/about' component={AboutPage} /> */}
                         <Route exact path='/' component={DashboardPage} />
                         <Route path='/dashboard' component={DashboardPage} />
-                        <ProtectedRoute path='/trip/:id' component={TripPage} />
+                        <Route path='/trip/:id/' component={TripPage} />
+                        {/* <Route path='/trip/:id/:section?' component={TripPage} /> */}
+                        {/* <ProtectedRoute path='/trip/:id/edit' component={TripPage} />
+                        <Route path='/trip/:id/agenda' component={TripPage} /> */}
                     </Switch>
                 </ThemeProvider>
             </BrowserRouter>

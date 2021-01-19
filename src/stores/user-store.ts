@@ -32,6 +32,12 @@ export const UserStore = types
         }
 
         return {
-            signIn, signOut
+            signIn, 
+            signOut,
+            afterCreate() {
+                //...
+            }
         }
     })
+
+export const userStore = UserStore.create({})

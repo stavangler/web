@@ -41,7 +41,7 @@ const a11yProps = (index: any) => {
 
 const TabMenu = (props: any) => {
     const classes = useStyles()
-    const [value, setValue] = React.useState(0)
+    const [value, setValue] = React.useState(props.index ?? 0)
     const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
         setValue(newValue)
     }

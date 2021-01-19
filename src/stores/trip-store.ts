@@ -1,27 +1,23 @@
 import { values } from "mobx"
 import { types, getParent, flow } from "mobx-state-tree"
-import store from "./store"
 import api from '../common/api'
+import { boolean } from "mobx-state-tree/dist/internal"
 
 export const Trip = types.model("Trip", {
     id: types.identifierNumber,
     title: types.string,
     description: types.string,
     imgUrl: types.string,
-    date: types.string
+    date: types.string,
     //...
 })
-
-// export const Entry = types.model("Entry", {
-//     id: types.identifierNumber,
-//     //...
-// })
 
 export const TripStore = types
     .model("TripStore", {
         isLoading: true,
         trips: types.map(Trip),
-        //entries: types.map(Entry)
+        // selected: types.reference(Trip),
+        // inEditMode: types.boolean
     })
     .views((self) => ({
         // get root(): any {
@@ -29,6 +25,12 @@ export const TripStore = types
         // },
         get allTrips() {
             return values(self.trips)
+        },
+        get select() {
+            throw new Error('Not implemented')
+        },
+        get edit() {
+            throw new Error('Not implemented')
         }
     }))
     .actions((self) => {
@@ -59,6 +61,11 @@ export const TripStore = types
         })
 
         return {
-            loadTrips
+            // loadTrips,
+            afterCreate() {
+                loadTrips()
+            }
         }
     })
+
+export const tripStore = TripStore.create({})

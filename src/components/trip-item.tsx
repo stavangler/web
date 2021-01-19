@@ -7,6 +7,7 @@ import * as Icon from 'react-feather'
 import utils from '../common/utils'
 import { useHistory } from 'react-router-dom'
 
+
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
@@ -46,10 +47,13 @@ const TripItem = (props: any) => {
                 </CardContent>
             </CardActionArea>
             <CardActions className={classes.flexSplit}>
-                <IconButton title="Agenda" className={classes.stdButton}>
+                {/* <div>
+                    {utils.shortDate(props.data.date)}
+                </div> */}
+                {/* <IconButton title="Agenda" className={classes.stdButton} onClick={() =>  }>
                     <Icon.Clipboard size={16} />
-                </IconButton>
-                <IconButton title="Edit trip" className={classes.stdButton}>
+                </IconButton> */}
+                <IconButton title="Edit trip" className={classes.stdButton} onClick={() => props.data.isEditMode = true}>
                     <Icon.Edit2 size={16} />
                 </IconButton>
             </CardActions>

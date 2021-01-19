@@ -2,6 +2,9 @@ import React from 'react'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import { Box, Tab, Tabs, Typography } from '@material-ui/core'
 import TabMenu from '../components/tab-menu'
+import Agenda from './trip-page/agenda'
+import Participants from './trip-page/participants'
+import Information from './trip-page/information'
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -16,15 +19,27 @@ const useStyles = makeStyles((theme: Theme) =>
 )
 
 
-const TripPage = () => {
+const TripPage = (props: any) => {
     const classes = useStyles()
+
+    console.log(props.data)
+
+    // const p = props.match.params.section
+    // let idx = 0
+    // if (p) {
+    //     if (p == 'edit')
+    //         console.log('edit todo')
+
+    //     if (p == 'agenda')
+    //         idx = 1
+    // }
 
     return (
         <div className={classes.root}>
-            <TabMenu children={[
-                { label: 'Information', content: <Box m={2}>Info page todo</Box> },
-                { label: 'Agenda', content: <Box m={1}>Agenda page todo</Box> },
-                { label: 'Participants', content: <Box m={3}>Participants todo</Box> }
+            <TabMenu index={0} children={[
+                { label: 'Information', content: <Information /> },
+                { label: 'Agenda', content: <Agenda /> },
+                { label: 'Participants', content: <Participants /> }
             ]}></TabMenu>
         </div>
     )
