@@ -34,7 +34,7 @@ export const TripStore = types
         }
     }))
     .actions((self) => {
-        const markIsLoading = (isLoading: boolean) => {
+        const markLoading = (isLoading: boolean) => {
             self.isLoading = isLoading
         }
         const updateTrips = (items: any) => {
@@ -49,12 +49,11 @@ export const TripStore = types
                 const query = {}
                 const result = yield api().postAsync('trips', query)
 
-
                 //const result = yield self.root.api.postAsync()
                 // const test: Promise<string> = async () => { return 'test'}
                 // const result = yield self.root.api.postAsync()
                 updateTrips(result)
-                markIsLoading(false)
+                markLoading(false)
             } catch (err) {
                 console.error("Failed to load trips", err)
             }

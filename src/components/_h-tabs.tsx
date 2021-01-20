@@ -1,5 +1,6 @@
 import React from 'react'
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
+import SwipeableViews from 'react-swipeable-views'
+import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles'
 import { Box, Tab, Tabs, Typography } from '@material-ui/core'
 import { v4 as uuidv4 } from 'uuid'
 
@@ -7,10 +8,14 @@ const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
             display: 'flex',
-            height: '100%'
+            height: '100%',
+            flexDirection: 'column'
         },
         tabs: {
-            borderRight: `1px solid ${theme.palette.divider}`,
+            [`& .MuiTabs-scroller`]: {
+                boxShadow: 'inset 0px -2px 0px 0px rgba(0,0,0,0.1)'
+            }
+            // borderRight: `1px solid ${theme.palette.divider}`,
         },
     }),
 )
@@ -39,21 +44,27 @@ const a11yProps = (index: any) => {
     }
 }
 
-const TabMenu = (props: any) => {
+const HTabs = (props: any) => {
     const classes = useStyles()
+    const theme = useTheme()
     const [value, setValue] = React.useState(props.index ?? 0)
     const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
         setValue(newValue)
     }
 
+    const handleChangeIndex = (index: number) => {
+        setValue(index)
+    }
+
     return (
         <div className={classes.root}>
             <Tabs
-                orientation="vertical"
                 variant="scrollable"
+                // scrollButtons="on"
                 value={value}
                 onChange={handleChange}
-                aria-label="Vertical tabs example"
+                aria-label="Horizontal tabs example"
+                // centered
                 className={classes.tabs}
             >
                 {
@@ -62,12 +73,18 @@ const TabMenu = (props: any) => {
                     )
                 }
             </Tabs>
-            {
-                props.children.map((c: any, i: number) =>
-                    <TabContent key={uuidv4()} value={value} index={i}>{c.content}</TabContent>
-                )
-            }
+            <SwipeableViews
+                axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+                index={value}
+                onChangeIndex={handleChangeIndex}
+            >
+                {
+                    props.children.map((c: any, i: number) =>
+                        <TabContent key={uuidv4()} value={value} index={i}>{c.content}</TabContent>
+                    )
+                }
+            </SwipeableViews>
         </div>
     )
 }
-export default TabMenu
+export default HTabs

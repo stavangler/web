@@ -6,8 +6,11 @@ const useStyles = makeStyles((theme: Theme) =>
     createStyles({}),
 )
 
-const Participants = () => {
+const Participants = (props:any) => {
     const classes = useStyles()
+
+    // console.log(props.id)
+
     return (
         <Box m={2}>
             [ Participants ]

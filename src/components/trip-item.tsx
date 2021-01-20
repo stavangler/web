@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme: Theme) =>
             borderRadius: 0,
             // maxWidth: 345,
         },
-        stdButton: { width:40, height:40 }, // todo: move to common styles
+        stdButton: { width: 40, height: 40 }, // todo: move to common styles
         media: { height: 140 },
         content: { margin: 16 },
         flexSplit: {
@@ -53,7 +53,7 @@ const TripItem = (props: any) => {
                 {/* <IconButton title="Agenda" className={classes.stdButton} onClick={() =>  }>
                     <Icon.Clipboard size={16} />
                 </IconButton> */}
-                <IconButton title="Edit trip" className={classes.stdButton} onClick={() => props.data.isEditMode = true}>
+                <IconButton title="Edit trip" className={classes.stdButton} onClick={() => { /* ... */ }}>
                     <Icon.Edit2 size={16} />
                 </IconButton>
             </CardActions>

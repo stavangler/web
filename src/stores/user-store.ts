@@ -9,15 +9,15 @@ export const User = types.model("User", {
 
 export const UserStore = types
     .model("UserStore", {
-        name: '',
+        //user: types.reference(User),
         isAuthenticated: true, //... 
-        token: ''
+        // token: ''
         //...
     })
     .views((self) => ({
         get user() {
             return {
-                name: self.name,
+                //name: self.user.name,
                 isAuthenticated: self.isAuthenticated
                 /* ... */
             }
