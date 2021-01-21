@@ -1,8 +1,7 @@
 import React from 'react'
 import { Card, CardActionArea, CardActions, CardContent, CardMedia, Button, Typography, CardHeader, Avatar, IconButton, Box } from '@material-ui/core'
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
+import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles'
 import { Paper } from '@material-ui/core'
-import { theme } from "../common/theme"
 import * as Icon from 'react-feather'
 import utils from '../common/utils'
 import { useHistory } from 'react-router-dom'
@@ -12,6 +11,7 @@ const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
             borderRadius: 0,
+            background: theme.palette.common.white
             // maxWidth: 345,
         },
         stdButton: { width: 40, height: 40 }, // todo: move to common styles
@@ -20,6 +20,12 @@ const useStyles = makeStyles((theme: Theme) =>
         flexSplit: {
             display: 'flex',
             justifyContent: 'space-between'
+        },
+        hTitle: {
+            color: theme.palette.background.default
+        },
+        hSubheader: {
+            color: theme.palette.background.default
         }
     }),
 )
@@ -27,6 +33,7 @@ const useStyles = makeStyles((theme: Theme) =>
 const TripItem = (props: any) => {
     const history = useHistory()
     const classes = useStyles()
+    const theme = useTheme()
 
     return (
         <Card className={classes.root} onClick={() => history.push(`trip/${props.data.id}`)}>
@@ -36,12 +43,17 @@ const TripItem = (props: any) => {
                     image={props.data.imgUrl}
                     title="Contemplative Reptile"
                 />
-                <CardHeader className={classes.content}
+                <CardHeader
+                    className={classes.content}
+                    classes={{
+                        title: classes.hTitle,
+                        subheader: classes.hSubheader
+                    }}
                     title={props.data.title}
                     subheader={utils.shortDate(props.data.date)}
                 />
                 <CardContent className={classes.content}>
-                    <Typography variant="body2" color="textSecondary" component="p">
+                    <Typography variant="body2" color="textPrimary" component="p">
                         {props.data.description}
                     </Typography>
                 </CardContent>
@@ -54,7 +66,7 @@ const TripItem = (props: any) => {
                     <Icon.Clipboard size={16} />
                 </IconButton> */}
                 <IconButton title="Edit trip" className={classes.stdButton} onClick={() => { /* ... */ }}>
-                    <Icon.Edit2 size={16} />
+                    <Icon.Edit2 color={theme.palette.common.black} size={16} />
                 </IconButton>
             </CardActions>
         </Card>

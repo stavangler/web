@@ -2,12 +2,10 @@ import React from 'react'
 import { Card, CardActionArea, CardActions, CardContent, CardMedia, Button, Typography, CardHeader, Avatar, IconButton, Box } from '@material-ui/core'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import { Paper } from '@material-ui/core'
-import { theme } from "../common/theme"
-import * as Icon from 'react-feather'
 import utils from '../common/utils'
 import { useHistory } from 'react-router-dom'
 import { v4 as uuidv4 } from 'uuid'
-
+import { useMediaQuery } from 'react-responsive'
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -22,16 +20,15 @@ const useStyles = makeStyles((theme: Theme) =>
         vertical: { flexDirection: 'column', height: '100%' },
         menu: {
             display: 'flex',
-            background: theme.palette.secondary.dark
             // flex: 1
         },
+        // bg: { background: theme.palette.primary.dark },
         content: {
-            // flex: 'auto'
+            flex: 'auto'
         },
-        button: {
-            padding: '2em',
-            
-        },
+        button: {},
+        bPadding: { padding: '2em' },
+        bDevicePadding: { padding: '1em' },
         // stdButton: { width: 40, height: 40 }, // todo: move to common styles
         // media: { height: 140 },
         // content: { margin: 16 },
@@ -45,6 +42,7 @@ const useStyles = makeStyles((theme: Theme) =>
 const FlatTabs = (props: any) => {
     const history = useHistory()
     const classes = useStyles()
+    const isDevice = useMediaQuery({ query: '(max-width: 1224px)' })
 
     const [index, setIndex] = React.useState(0)
 
@@ -54,14 +52,16 @@ const FlatTabs = (props: any) => {
 
     return (
         <div className={`${classes.root} ${rootAxisClass}`}>
-            <div className={`${classes.menu} ${menuAxisClass}`}>
+            <div className={`${classes.menu} ${menuAxisClass}`} style={{ background: props.menuBg }}>
                 {
                     props.children.map((c: any, i: number) =>
-                        <IconButton size="small" className={classes.button} key={uuidv4()} onClick={() => setIndex(i)}>{c.label}</IconButton>
+                        <IconButton size="small" className={`${classes.button} ${isDevice ? classes.bDevicePadding : classes.bPadding}`} key={uuidv4()} onClick={() => setIndex(i)}>
+                            {isDevice ? c.icon : c.label}
+                        </IconButton>
                     )
                 }
             </div>
-            <div>
+            <div className={classes.content}>
                 {
                     props.children.map((c: any, i: number) =>
                         index == i ? <div key={uuidv4()}>{c.content}</div> : <div key={uuidv4()}></div>

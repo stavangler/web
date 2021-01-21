@@ -1,6 +1,6 @@
 import React from 'react'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
-import { Box } from '@material-ui/core'
+import { Box, Typography } from '@material-ui/core'
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({}),
@@ -13,7 +13,7 @@ const Participants = (props:any) => {
 
     return (
         <Box m={2}>
-            [ Participants ]
+            <Typography color="textSecondary">Participants</Typography>
         </Box>
     )
 }

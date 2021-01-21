@@ -1,4 +1,5 @@
 import { createMuiTheme } from '@material-ui/core'
+import { darken, lighten } from '@material-ui/core/styles'
 
 export const knowitColors = {
     black: '#333333',
@@ -12,13 +13,28 @@ export const knowitColors = {
     clay: '#A5B1AA',
 }
 
+// const theme = createMuiTheme({
+//     overrides: {
+//         MuiAppBar: {
+//             colorPrimary: {
+//                 backgroundColor: "#FFC0CB" 
+//             }
+//         }
+//     }, 
+//     palette: { type: "dark" }
+// });
+
 export const theme = createMuiTheme({
     palette: {
         primary: {
             main: knowitColors.mint,
+            light: lighten(knowitColors.mint, 0.1),
+            dark: darken(knowitColors.mint, 0.1),
         },
         secondary: {
-            main: knowitColors.pear,
+            main: knowitColors.forest,
+            light: lighten(knowitColors.forest, 0.1),
+            dark: darken(knowitColors.forest, 0.1),
         },
         background: {
             default: knowitColors.forest,
@@ -34,7 +50,7 @@ export const theme = createMuiTheme({
         text: {
             primary: knowitColors.black,
         },
-        type: 'light',
+        type: 'dark',
     },
     typography: {
         fontFamily: [
@@ -57,7 +73,7 @@ export const theme = createMuiTheme({
             'sans-serif',
         ].join(","),
         fontSize: 14,
-        
+
         htmlFontSize: 16,
         button: {
             fontWeight: 'bold',
@@ -72,5 +88,10 @@ export const theme = createMuiTheme({
                 html: { WebkitFontSmoothing: 'auto' },
             },
         },
+        MuiAppBar: {
+            colorPrimary: {
+                backgroundColor: darken(knowitColors.white, 0)
+            }
+        }
     },
 })

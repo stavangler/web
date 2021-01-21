@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme: Theme) =>
         small: {
             width: theme.spacing(3),
             height: theme.spacing(3),
+            background: theme.palette.common.white
         },
     }),
 )
@@ -41,7 +42,7 @@ const App = () => {
                                 userStore?.isAuthenticated ?
                                     <>
                                         <IconButton title="New trip" className={classes.stdButton}>
-                                            <Icon.PlusCircle size={16} />
+                                            <Icon.PlusCircle color={theme.palette.common.black} size={16} />
                                         </IconButton>
                                         <IconButton title="User" className={classes.stdButton}>
                                             <Avatar className={classes.small} />
