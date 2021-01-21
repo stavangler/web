@@ -13,17 +13,6 @@ export const knowitColors = {
     clay: '#A5B1AA',
 }
 
-// const theme = createMuiTheme({
-//     overrides: {
-//         MuiAppBar: {
-//             colorPrimary: {
-//                 backgroundColor: "#FFC0CB" 
-//             }
-//         }
-//     }, 
-//     palette: { type: "dark" }
-// });
-
 export const theme = createMuiTheme({
     palette: {
         primary: {

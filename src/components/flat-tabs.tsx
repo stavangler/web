@@ -1,8 +1,6 @@
-import React from 'react'
-import { Card, CardActionArea, CardActions, CardContent, CardMedia, Button, Typography, CardHeader, Avatar, IconButton, Box } from '@material-ui/core'
+import React, { useState } from 'react'
+import { IconButton } from '@material-ui/core'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
-import { Paper } from '@material-ui/core'
-import utils from '../common/utils'
 import { useHistory } from 'react-router-dom'
 import { v4 as uuidv4 } from 'uuid'
 import { useMediaQuery } from 'react-responsive'
@@ -12,9 +10,6 @@ const useStyles = makeStyles((theme: Theme) =>
         root: {
             display: 'flex',
             height: '100%',
-            // background: theme.palette.secondary.dark
-            // borderRadius: 0,
-            // maxWidth: 345,
         },
         horizontal: { flexDirection: 'row', width: '100%' },
         vertical: { flexDirection: 'column', height: '100%' },
@@ -22,29 +17,26 @@ const useStyles = makeStyles((theme: Theme) =>
             display: 'flex',
             // flex: 1
         },
-        // bg: { background: theme.palette.primary.dark },
         content: {
             flex: 'auto'
         },
         button: {},
         bPadding: { padding: '2em' },
         bDevicePadding: { padding: '1em' },
-        // stdButton: { width: 40, height: 40 }, // todo: move to common styles
-        // media: { height: 140 },
-        // content: { margin: 16 },
-        // flexSplit: {
-        //     display: 'flex',
-        //     justifyContent: 'space-between'
-        // }
+        auxiliary: {
+            position: 'fixed',
+            bottom: 0,
+            right: 0
+        }
     }),
 )
 
 const FlatTabs = (props: any) => {
     const history = useHistory()
     const classes = useStyles()
-    const isDevice = useMediaQuery({ query: '(max-width: 1224px)' })
+    const isDevice = useMediaQuery({ query: '(max-width: 1024px)' })
 
-    const [index, setIndex] = React.useState(0)
+    const [index, setIndex] = useState(0)
 
     const d = props.axis == 'horizontal'
     const rootAxisClass = d ? classes.vertical : classes.horizontal
@@ -61,11 +53,18 @@ const FlatTabs = (props: any) => {
                     )
                 }
             </div>
+
             <div className={classes.content}>
                 {
                     props.children.map((c: any, i: number) =>
                         index == i ? <div key={uuidv4()}>{c.content}</div> : <div key={uuidv4()}></div>
                     )
+                }
+            </div>
+
+            <div className={classes.auxiliary}>
+                {
+                    props.children[index].menu ?? null
                 }
             </div>
         </div>

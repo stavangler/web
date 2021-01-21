@@ -11,7 +11,6 @@ import { userStore } from './stores/user-store'
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
-        // root: { flexGrow: 1 },
         stdButton: { width: 40, height: 40 }, // todo: move to common styles
         title: { marginLeft: 8, flexGrow: 1 },
         small: {
@@ -24,7 +23,6 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const App = () => {
     const classes = useStyles()
-    // const { user } = store.userStore
     return (
         <>
             <BrowserRouter>

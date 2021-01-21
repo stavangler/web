@@ -12,12 +12,6 @@ const useStyles = makeStyles((theme: Theme) =>
 const DashboardPage = observer(() => {
     const classes = useStyles()
 
-    // const { allTrips } = store.tripStore
-
-    // store.tripStore.loadTrips() // ! test test ...
-    // console.log(store.tripStore.isLoading)
-    // console.log(allTrips)
-
     return (
         <>
             {

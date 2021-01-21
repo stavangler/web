@@ -9,8 +9,6 @@ const useStyles = makeStyles((theme: Theme) =>
 const Information = (props:any) => {
     const classes = useStyles()
 
-    // console.log(props.id)
-
     return (
         <Box m={2}>
             <Typography color="textSecondary">Information</Typography>

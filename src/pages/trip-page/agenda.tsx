@@ -1,68 +1,85 @@
-import React from 'react'
+import React, { useContext, useEffect, useRef } from 'react'
 import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles'
 import { Avatar, Box, Chip } from '@material-ui/core'
-import HTabs from '../../components/_h-tabs'
-import FlatTabs from '../../components/flat-tabs'
 import * as Icon from 'react-feather'
 import { v4 as uuidv4 } from 'uuid'
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
-        root: {
+        menuContainer: {
+            display: 'flex',
+            flexDirection: 'row',
+        },
+        menuChip: {
+            flex: 1,
+            margin: '1em',
+        },
+        contentRoot: {
             display: 'flex',
             overflow: 'auto',
             width: '100%'
         },
-        container: {
+        contentContainer: {
             display: 'flex',
             width: 0
         },
-        chip: {
+        contentChip: {
             margin: '1em',
         },
     }),
 )
 
-const Agenda = (props: any) => {
+const agenda = () => {
+
     const classes = useStyles()
     const theme = useTheme()
-    // console.log(props.id)
 
-    const test = [
-        { av: 'Mo', label: '23/5' },
-        { av: 'Tu', label: '24/5' },
-        { av: 'We', label: '25/5' },
-        { av: 'Th', label: '26/5' }
+    const testDays = [
+        { day: 'Mo', label: '23/5' },
+        { day: 'Tu', label: '24/5' },
+        { day: 'We', label: '25/5' },
+        { day: 'Th', label: '26/5' }
     ]
 
-    return (
-        <Box my={0} className={classes.root}>
-            <Box className={classes.container}>
+    const testFilters = ['routine', 'dev', 'lecture']
+
+    return {
+        menu:
+            <Box m={2} className={classes.menuContainer}>
                 {
-                    test.map((t: any) =>
+                    testFilters.map((f: any) =>
                         <Chip
-                            className={classes.chip}
+                            className={classes.menuChip}
                             key={uuidv4()}
-                            avatar={<Avatar>{t.av}</Avatar>}
-                            label={t.label}
+                            label={f}
                             clickable
                             color="primary"
-                            // onDelete={handleDelete}
-                            deleteIcon={<Icon.X size={16} />}
                         />
 
                     )
                 }
             </Box>
-        </Box>
-        // <FlatTabs 
-        //     axis="horizontal"
-        //     menuBg={theme.palette.secondary.main}
-        //     children={[
-        //         { label: 'Monday', content: <Box m={4}>test1</Box> },
-        //         { label: 'Tuesday', content: <Box m={4}>test2</Box> },
-        //         { label: 'Wednesday', content: <Box m={4}>test3</Box> }
-        //     ]} ></FlatTabs>
-    )
+        ,
+        content:
+            <Box my={0} className={classes.contentRoot}>
+                <Box className={classes.contentContainer}>
+                    {
+                        testDays.map((d: any) =>
+                            <Chip
+                                className={classes.contentChip}
+                                key={uuidv4()}
+                                avatar={<Avatar>{d.day}</Avatar>}
+                                label={d.label}
+                                clickable
+                                color="primary"
+                                // onDelete={handleDelete}
+                                deleteIcon={<Icon.X size={16} />}
+                            />
+
+                        )
+                    }
+                </Box>
+            </Box>
+    }
 }
-export default Agenda
+export default agenda
