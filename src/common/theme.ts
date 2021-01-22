@@ -22,8 +22,8 @@ export const theme = createMuiTheme({
         },
         secondary: {
             main: knowitColors.forest,
-            light: lighten(knowitColors.forest, 0.1),
-            dark: darken(knowitColors.forest, 0.1),
+            light: lighten(knowitColors.forest, 0.2),
+            dark: darken(knowitColors.forest, 0.2),
         },
         background: {
             default: knowitColors.forest,
@@ -38,6 +38,7 @@ export const theme = createMuiTheme({
         },
         text: {
             primary: knowitColors.black,
+            secondary: knowitColors.black,
         },
         type: 'dark',
     },

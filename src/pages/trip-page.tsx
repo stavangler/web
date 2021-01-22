@@ -1,6 +1,6 @@
 import React from 'react'
 import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles'
-import agenda from './trip-page/agenda'
+import Agenda from './trip-page/agenda'
 import Participants from './trip-page/participants'
 import Information from './trip-page/information'
 import FlatTabs from '../components/flat-tabs'
@@ -25,9 +25,9 @@ const TripPage = (props: any) => {
             axis="vertical"
             menuBg={theme.palette.secondary.dark}
             children={[
-                { icon: <Icon.Info size={16} />, label: 'Information', content: <Information tripId={tripId} /> },
-                { icon: <Icon.Clipboard size={16} />, label: 'Agenda', menu: agenda().menu, content: agenda().content },
-                { icon: <Icon.Users size={16} />, label: 'Participants', content: <Participants tripId={tripId} /> }
+                { icon: <Icon.Info size={16} />, label: 'Information', content: <Information /> },
+                { icon: <Icon.Clipboard size={16} />, label: 'Agenda', content: <Agenda /> },
+                { icon: <Icon.Users size={16} />, label: 'Participants', content: <Participants /> }
             ]} ></FlatTabs>
     )
 }

@@ -9,10 +9,10 @@ const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
             display: 'flex',
-            height: '100%',
+            flex: 1
         },
         horizontal: { flexDirection: 'row', width: '100%' },
-        vertical: { flexDirection: 'column', height: '100%' },
+        vertical: { flexDirection: 'column' },
         menu: {
             display: 'flex',
             // flex: 1
@@ -61,12 +61,10 @@ const FlatTabs = (props: any) => {
                     )
                 }
             </div>
-
+            {/* 
             <div className={classes.auxiliary}>
-                {
-                    props.children[index].menu ?? null
-                }
-            </div>
+                { props.children[index].menu() ?? null }
+            </div> */}
         </div>
     )
 }

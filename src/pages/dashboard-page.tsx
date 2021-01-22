@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect} from 'react'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import { Box, Grid } from '@material-ui/core'
 import TripItem from '../components/trip-item'

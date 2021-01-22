@@ -1,6 +1,6 @@
 import React from 'react'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
-import { BrowserRouter, Route, Switch } from "react-router-dom"
+import { BrowserRouter, Route, Switch, Link } from "react-router-dom"
 import { ThemeProvider, CssBaseline, AppBar, Toolbar, Typography, Button, IconButton, Avatar } from '@material-ui/core'
 import { theme } from './common/theme'
 import ProtectedRoute from './components/protected-route'
@@ -31,7 +31,9 @@ const App = () => {
                     <AppBar position="static" elevation={0}>
                         <Toolbar>
                             <IconButton edge="start" className={classes.stdButton} color="inherit" aria-label="menu">
-                                <Icon.Menu size={16} />
+                                <Link to="/dashboard">
+                                    <Icon.Menu size={16} />
+                                </Link>
                             </IconButton>
                             <Typography variant="h6" className={classes.title}>
                                 Bratur
