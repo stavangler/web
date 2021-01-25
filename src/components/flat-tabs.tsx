@@ -20,13 +20,18 @@ const useStyles = makeStyles((theme: Theme) =>
         content: {
             flex: 'auto'
         },
-        button: {},
+        button: {
+            color: theme.palette.info.main
+        },
         bPadding: { padding: '2em' },
         bDevicePadding: { padding: '1em' },
         auxiliary: {
             position: 'fixed',
             bottom: 0,
             right: 0
+        },
+        iconButtonWText : {
+            display: 'flex'
         }
     }),
 )
@@ -48,7 +53,14 @@ const FlatTabs = (props: any) => {
                 {
                     props.children.map((c: any, i: number) =>
                         <IconButton size="small" className={`${classes.button} ${isDevice ? classes.bDevicePadding : classes.bPadding}`} key={uuidv4()} onClick={() => setIndex(i)}>
-                            {isDevice ? c.icon : c.label}
+                            {
+                                isDevice ?
+                                    c.icon :
+                                    <div className="iconButtonWText">
+                                        <div>{c.icon}</div> 
+                                        <div>{c.label}</div>
+                                    </div>
+                            }
                         </IconButton>
                     )
                 }

@@ -16,13 +16,13 @@ export const knowitColors = {
 export const theme = createMuiTheme({
     palette: {
         primary: {
-            main: knowitColors.mint,
-            light: lighten(knowitColors.mint, 0.1),
-            dark: darken(knowitColors.mint, 0.1),
+            main: knowitColors.sand,
+            light: lighten(knowitColors.sand, 0.2),
+            dark: darken(knowitColors.sand, 0.2),
         },
         secondary: {
             main: knowitColors.forest,
-            light: lighten(knowitColors.forest, 0.2),
+            light: lighten(knowitColors.forest, 0.1),
             dark: darken(knowitColors.forest, 0.2),
         },
         background: {
@@ -33,12 +33,15 @@ export const theme = createMuiTheme({
             black: knowitColors.black,
         },
         action: {
-            selected: knowitColors.sand,
-            disabled: knowitColors.clay,
+            selected: knowitColors.clay,
+            disabled: knowitColors.mint,
         },
         text: {
-            primary: knowitColors.black,
-            secondary: knowitColors.black,
+            primary: darken(knowitColors.forest, 0.2),
+            secondary: lighten(knowitColors.forest, 0.2),
+        },
+        info: {
+            main: knowitColors.mint
         },
         type: 'dark',
     },
@@ -62,19 +65,24 @@ export const theme = createMuiTheme({
             'Helvetica',
             'sans-serif',
         ].join(","),
-        fontSize: 14,
-
+        fontSize: 13,
         htmlFontSize: 16,
-        button: {
-            fontWeight: 'bold',
-            fontFamily: 'Roboto',
-        },
+        // fontWeightLight: 600,
+        fontWeightRegular: 500,
+        // fontWeightMedium: 400,
+        // fontWeightBold: 600,
     },
     overrides: {
         MuiCssBaseline: {
             '@global': {
                 '*:focus': { outline: 'none !important' },
-                button: { borderRadius: '0 !important' },
+                // button: { borderRadius: '0 !important' },
+                button: {
+                    borderRadius: '0 !important',
+                    fontFamily: 'Arial',
+                    fontSize: '13px !important',
+                    fontWeight: 500,
+                },
                 html: { WebkitFontSmoothing: 'auto' },
             },
         },
@@ -82,6 +90,6 @@ export const theme = createMuiTheme({
             colorPrimary: {
                 backgroundColor: darken(knowitColors.white, 0)
             }
-        }
+        },
     },
 })

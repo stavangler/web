@@ -7,12 +7,14 @@ import FavoriteIcon from '@material-ui/icons/Favorite'
 import ShareIcon from '@material-ui/icons/Share'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
+import * as Icon from 'react-feather'
+import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
             borderRadius: 0,
-            background: theme.palette.secondary.light
+            background: theme.palette.primary.main
             // maxWidth: 345,
         },
         // media: {
@@ -30,8 +32,34 @@ const useStyles = makeStyles((theme: Theme) =>
             transform: 'rotate(180deg)',
         },
         avatar: {
-            backgroundColor: red[500],
+            backgroundColor: theme.palette.secondary.main,
+            color: theme.palette.info.main
         },
+        table: {
+            display: 'table',
+        },
+        row: {
+            display: 'table-row',
+        },
+        cell: {
+            padding: '.5em',
+            display: 'table-cell',
+            verticalAlign: 'middle'
+        },
+        group: {
+            display: 'flex',
+            alignItems: 'center',
+            [`& > *`]: { /* */},
+        },
+        icon: {
+            // marginRight: '.5em',
+            color: theme.palette.text.secondary
+        },
+        strLink: {
+            textDecoration: 'none',
+            fontWeight: 'bold',
+            color: theme.palette.secondary.main
+        }
     }),
 )
 
@@ -49,33 +77,73 @@ const EntryItem = () => {
                 avatar={
                     <Avatar aria-label="recipe" className={classes.avatar}>
                         R
-          </Avatar>
+                    </Avatar>
                 }
                 action={
                     <IconButton aria-label="settings">
-                        <MoreVertIcon />
+                        <Icon.MoreVertical className={classes.icon} size={16} />
                     </IconButton>
                 }
-                title="Shrimp and Chorizo Paella"
-                subheader="September 14, 2016"
+                title="Medisinsk simulering som et distribuert system"
+                // subheader="09:30 - 10:00 | 30:00 minutter"
+                subheader={<Box m={1} className={classes.group}>
+                    <Box mr={1}>
+                        <Icon.Clock className={classes.icon} size={16} />
+                    </Box>
+                    <Typography variant="body2" color="textSecondary" component="p">
+                        09:30 - 10:00
+                    </Typography>
+                </Box>}
             />
-            {/* <CardMedia
-                className={classes.media}
-                image="/static/images/cards/paella.jpg"
-                title="Paella dish"
-            /> */}
+            <Collapse in={expanded} timeout="auto" unmountOnExit>
+                <CardContent>
+                    <Typography paragraph color="textSecondary">
+                        Laerdal Medical har de siste femten årene basert mye av simuleringen sin på noen få applikasjoner. Disse monolittene skulle dekke hvert sitt domene men har over tid utviklet seg til å prøve å favne over alle simuleringsdomener - med overlapping av hverandre. LM ønsket en fleksibel arkitektur som tillater rask prototyping samt klinisk nøyaktighet - dette arbeidet er påbegynt.
+                    </Typography>
+                </CardContent>
+            </Collapse>
             <CardContent>
-                <Typography variant="body2" color="textSecondary" component="p">
-                    This impressive paella is a perfect party dish and a fun meal to cook together with your
-                    guests. Add 1 cup of frozen peas along with the mussels, if you like.
-        </Typography>
+                <Box className={classes.table}>
+                    <Box className={classes.row}>
+                        <Box className={classes.cell}>
+                            <Box className={classes.group}>
+                                <Box mr={1}>
+                                    <Icon.User className={classes.icon} size={16} />
+                                </Box>
+                                <Typography variant="body2" color="textSecondary" component="p">
+                                    Foredragsholdere
+                                </Typography>
+                            </Box>
+                        </Box>
+                        <Box className={classes.cell}>
+                            <Link to=".." className={classes.strLink}>Aleksander</Link>
+                        </Box>
+                    </Box>
+                    <Box className={classes.row}>
+                        <Box className={classes.cell}>
+                            <Box className={classes.group}>
+                                <Box mr={1}>
+                                    <Icon.Home className={classes.icon} size={16} />
+                                </Box>
+                                <Typography variant="body2" color="textSecondary" component="p">
+                                    Rom
+                                </Typography>
+                            </Box>
+                        </Box>
+                        <Box className={classes.cell}>
+                            <Typography variant="body2" color="textPrimary" component="p">
+                                Van Gogh 2
+                            </Typography>
+                        </Box>
+                    </Box>
+                </Box>
             </CardContent>
             <CardActions disableSpacing>
                 <IconButton aria-label="add to favorites">
-                    <FavoriteIcon />
+                    <Icon.Heart className={classes.icon} size={16} />
                 </IconButton>
                 <IconButton aria-label="share">
-                    <ShareIcon />
+                    <Icon.Share2 className={classes.icon} size={16} />
                 </IconButton>
                 <IconButton
                     className={clsx(classes.expand, {
@@ -85,36 +153,9 @@ const EntryItem = () => {
                     aria-expanded={expanded}
                     aria-label="show more"
                 >
-                    <ExpandMoreIcon />
+                    <Icon.ChevronDown className={classes.icon} size={16} />
                 </IconButton>
             </CardActions>
-            <Collapse in={expanded} timeout="auto" unmountOnExit>
-                <CardContent>
-                    <Typography paragraph>Method:</Typography>
-                    <Typography paragraph>
-                        Heat 1/2 cup of the broth in a pot until simmering, add saffron and set aside for 10
-                        minutes.
-          </Typography>
-                    <Typography paragraph>
-                        Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high
-                        heat. Add chicken, shrimp and chorizo, and cook, stirring occasionally until lightly
-                        browned, 6 to 8 minutes. Transfer shrimp to a large plate and set aside, leaving chicken
-                        and chorizo in the pan. Add pimentón, bay leaves, garlic, tomatoes, onion, salt and
-                        pepper, and cook, stirring often until thickened and fragrant, about 10 minutes. Add
-                        saffron broth and remaining 4 1/2 cups chicken broth; bring to a boil.
-          </Typography>
-                    <Typography paragraph>
-                        Add rice and stir very gently to distribute. Top with artichokes and peppers, and cook
-                        without stirring, until most of the liquid is absorbed, 15 to 18 minutes. Reduce heat to
-                        medium-low, add reserved shrimp and mussels, tucking them down into the rice, and cook
-                        again without stirring, until mussels have opened and rice is just tender, 5 to 7
-                        minutes more. (Discard any mussels that don’t open.)
-          </Typography>
-                    <Typography>
-                        Set aside off of the heat to let rest for 10 minutes, and then serve.
-          </Typography>
-                </CardContent>
-            </Collapse>
         </Card>
     )
 }

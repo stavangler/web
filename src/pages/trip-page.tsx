@@ -20,14 +20,16 @@ const TripPage = (props: any) => {
     const theme = useTheme()
     const tripId = props.match.params.id
 
+    const icr = theme.palette.action.disabled
+
     return (
         <FlatTabs
             axis="vertical"
             menuBg={theme.palette.secondary.dark}
             children={[
-                { icon: <Icon.Info size={16} />, label: 'Information', content: <Information /> },
-                { icon: <Icon.Clipboard size={16} />, label: 'Agenda', content: <Agenda /> },
-                { icon: <Icon.Users size={16} />, label: 'Participants', content: <Participants /> }
+                { icon: <Icon.Clipboard color={icr} size={16} />, label: 'Agenda', content: <Agenda /> },
+                { icon: <Icon.Info color={icr} size={16} />, label: 'Information', content: <Information /> },
+                { icon: <Icon.Users color={icr} size={16} />, label: 'Participants', content: <Participants /> }
             ]} ></FlatTabs>
     )
 }

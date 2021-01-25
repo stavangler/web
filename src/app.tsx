@@ -1,12 +1,13 @@
 import React from 'react'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import { BrowserRouter, Route, Switch, Link } from "react-router-dom"
-import { ThemeProvider, CssBaseline, AppBar, Toolbar, Typography, Button, IconButton, Avatar } from '@material-ui/core'
-import { theme } from './common/theme'
+import { ThemeProvider, CssBaseline, AppBar, Toolbar, Typography, Box, IconButton, Avatar } from '@material-ui/core'
+import { knowitColors, theme } from './common/theme'
 import ProtectedRoute from './components/protected-route'
 import DashboardPage from './pages/dashboard-page'
 import TripPage from './pages/trip-page'
 import * as Icon from 'react-feather'
+import { v4 as uuidv4 } from 'uuid'
 import { userStore } from './stores/user-store'
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -18,6 +19,11 @@ const useStyles = makeStyles((theme: Theme) =>
             height: theme.spacing(3),
             background: theme.palette.common.white
         },
+        testColor: {
+            width: 6,
+            height: 10,
+            float: 'left'
+        }
     }),
 )
 
@@ -30,17 +36,26 @@ const App = () => {
                     <CssBaseline />
                     <AppBar position="static" elevation={0}>
                         <Toolbar>
-                            <IconButton edge="start" className={classes.stdButton} color="inherit" aria-label="menu">
-                                <Link to="/dashboard">
-                                    <Icon.Menu size={16} />
-                                </Link>
-                            </IconButton>
+                            <Link to="/dashboard">
+                                <IconButton edge="start" className={classes.stdButton} color="inherit" aria-label="menu">
+                                    <Icon.Menu color={theme.palette.secondary.main} size={16} />
+                                </IconButton>
+                            </Link>
                             <Typography variant="h6" className={classes.title}>
                                 Bratur
                             </Typography>
                             {
                                 userStore?.isAuthenticated ?
                                     <>
+                                        { /* theme color test  */}
+                                        <Box>
+                                            {
+                                                Object.values(knowitColors).map((x) =>
+                                                    <Box key={uuidv4()} m={.2} style={{ background: x }} className={classes.testColor}></Box>
+                                                )
+                                            }
+                                        </Box>
+
                                         <IconButton title="New trip" className={classes.stdButton}>
                                             <Icon.PlusCircle color={theme.palette.common.black} size={16} />
                                         </IconButton>
