@@ -10,6 +10,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert'
 import * as Icon from 'react-feather'
 import { Link } from 'react-router-dom'
 import utils from '../common/utils'
+import { tripStore } from '../stores/trip-store'
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -37,7 +38,7 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         avatar: {
             backgroundColor: theme.palette.secondary.main,
-            color: theme.palette.info.main
+            color: theme.palette.text.primary
         },
         table: {
             display: 'table',
@@ -75,13 +76,19 @@ const EntryItem = (props: any) => {
     const handleExpandClick = () => { setExpanded(!expanded) }
     const d = props.data
 
+    let avColor = utils.filterColors()[0]
+    const tags = d.tags.toJSON()
+    if (tags.length == 1) {
+        avColor = utils.filterColors()[tripStore.tags.indexOf(tags[0])]
+    }
+
     return (
         <Card className={` ${classes.root} ${utils.isDevice() ? classes.cDeviceSpacing : classes.cSpacing}`}>
             <CardHeader
                 className={classes.header}
                 avatar={
-                    <Avatar aria-label="recipe" className={classes.avatar}>
-                        R
+                    <Avatar aria-label="recipe" className={classes.avatar} style={{ backgroundColor: avColor }}>
+                        <Icon.Calendar size={16} />
                     </Avatar>
                 }
                 action={

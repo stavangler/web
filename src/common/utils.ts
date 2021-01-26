@@ -1,5 +1,6 @@
 import moment from 'moment'
 import { useMediaQuery } from 'react-responsive'
+import { knowitColors } from './theme'
 
 const utils = {
     shortDate: (dateStr: string) => {
@@ -7,6 +8,14 @@ const utils = {
     },
     isDevice: () => {
         return useMediaQuery({ query: '(max-width: 1024px)' })
+    },
+    filterColors: (): string[] => {
+        return [
+            knowitColors.sand,
+            knowitColors.flamingo,
+            knowitColors.pear,
+            knowitColors.clay
+        ]
     }
 }
 export default utils

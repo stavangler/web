@@ -20,6 +20,7 @@ export const Entry = types.model("Entry", {
     description: types.maybeNull(types.string),
     room: types.maybeNull(types.string),
     speakers: types.array(types.string),
+    tags: types.array(types.string),
     starttime: types.string,
     endtime: types.maybeNull(types.string),
 })
@@ -42,6 +43,16 @@ export const TripStore = types
         },
         get loadedEntries() {
             return values(self.entries)
+        },
+        get tags() {
+            const tags: string[] = []
+            self.entries.forEach((e: any) => {
+                values(e.tags).forEach(t => {
+                    if (!tags.includes(t))
+                        tags.push(t)
+                })
+            })
+            return ['common'].concat(tags)
         }
         // get select() {
         //     throw new Error('Not implemented')

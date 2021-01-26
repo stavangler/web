@@ -23,10 +23,10 @@ const useStyles = makeStyles((theme: Theme) =>
             // borderColor: theme.palette.info.main,
             // borderWidth: 2,
             // fontWeight: 600,
-            [`& span`]: { 
+            [`& span`]: {
                 // fontSize: '12px !important',
                 textTransform: 'uppercase'
-             },
+            },
         },
         daysRoot: {
             display: 'flex',
@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme: Theme) =>
         daysContainer: {
             display: 'grid',
             gridAutoFlow: 'column',
-            margin:2,
+            margin: 2,
             gridGap: 2,
             width: '100%',
             marginBottom: '1em'
@@ -65,13 +65,10 @@ const Agenda = observer(() => {
     // ! todo: find nr of days in trip
     const testDays = [
         { day: 'Mo', label: 'Tue 23.5' },
-        { day: 'Tu', label: 'Wed 24.5 '},
+        { day: 'Tu', label: 'Wed 24.5 ' },
         { day: 'We', label: 'Thu 25.5' },
         { day: 'Th', label: 'Fri 26.5' }
     ]
-
-    // ! todo: find all tag occurences
-    const testFilters = ['common', 'dev', 'lecture']
 
     // ! todo: load entries by day
     useEffect(() => {
@@ -81,7 +78,7 @@ const Agenda = observer(() => {
 
     return (
         <Box my={0} className={classes.root}>
-            <Box className={`${classes.daysRoot}`}> 
+            <Box className={`${classes.daysRoot}`}>
                 <Box className={classes.daysContainer}>
                     {
                         testDays.map((d: any) =>
@@ -103,9 +100,10 @@ const Agenda = observer(() => {
             </Box>
             <Box mx={2}>
                 {
-                    testFilters.map((f: any) =>
+                    tripStore.tags.map((f: any, i: any) =>
                         <Chip
                             // variant="outlined"
+                            style={{ backgroundColor: utils.filterColors()[i] }}
                             size="small"
                             className={classes.filterChip}
                             key={uuidv4()}

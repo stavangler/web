@@ -39,7 +39,7 @@ const api = () => {
 
             const response = await fetch(request)
             const res = await response.json()
-            console.log(res)
+            // console.log(res)
             return res
         }
         // put = async (model) => {
