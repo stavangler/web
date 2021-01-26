@@ -3,7 +3,7 @@ import { IconButton } from '@material-ui/core'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import { useHistory } from 'react-router-dom'
 import { v4 as uuidv4 } from 'uuid'
-import { useMediaQuery } from 'react-responsive'
+import utils from '../common/utils'
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -30,8 +30,13 @@ const useStyles = makeStyles((theme: Theme) =>
             bottom: 0,
             right: 0
         },
-        iconButtonWText : {
-            display: 'flex'
+        iconButtonWText: {
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems:'center',
+            [`& div`]: {
+                margin: '.5em'
+            },
         }
     }),
 )
@@ -39,7 +44,7 @@ const useStyles = makeStyles((theme: Theme) =>
 const FlatTabs = (props: any) => {
     const history = useHistory()
     const classes = useStyles()
-    const isDevice = useMediaQuery({ query: '(max-width: 1024px)' })
+    const isDevice = utils.isDevice()
 
     const [index, setIndex] = useState(0)
 
@@ -56,8 +61,8 @@ const FlatTabs = (props: any) => {
                             {
                                 isDevice ?
                                     c.icon :
-                                    <div className="iconButtonWText">
-                                        <div>{c.icon}</div> 
+                                    <div className={classes.iconButtonWText}>
+                                        <div>{c.icon}</div>
                                         <div>{c.label}</div>
                                     </div>
                             }

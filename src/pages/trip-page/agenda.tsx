@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid'
 import { tripStore } from '../../stores/trip-store'
 import { observer } from 'mobx-react'
 import EntryItem from '../../components/entry-item'
-import { useMediaQuery } from 'react-responsive'
+import utils from '../../common/utils'
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         filterChip: {
             flex: 1,
-            margin: '1em',
+            margin: '.5em',
             backgroundColor: theme.palette.action.selected,
             color: theme.palette.secondary.dark,
             padding: '1em 1em',
@@ -61,19 +61,21 @@ const Agenda = observer(() => {
 
     const classes = useStyles()
     const theme = useTheme()
-    const isDevice = useMediaQuery({ query: '(max-width: 1024px)' })
 
+    // ! todo: find nr of days in trip
     const testDays = [
-        { day: 'Mo', label: '23/5 Tue', short: '23/5' },
-        { day: 'Tu', label: '24/5 Wed', short: '24/5' },
-        { day: 'We', label: '25/5 Thu', short: '25/5' },
-        { day: 'Th', label: '26/5 Fri', short: '26/5' }
+        { day: 'Mo', label: 'Tue 23.5' },
+        { day: 'Tu', label: 'Wed 24.5 '},
+        { day: 'We', label: 'Thu 25.5' },
+        { day: 'Th', label: 'Fri 26.5' }
     ]
 
-    const testFilters = ['routine', 'dev', 'lecture']
+    // ! todo: find all tag occurences
+    const testFilters = ['common', 'dev', 'lecture']
 
+    // ! todo: load entries by day
     useEffect(() => {
-        const testquery = { tripId: 1, date: '2019-09-20' }
+        const testquery = { tripId: 1, date: '2019-09-21' }
         tripStore.loadEntries(testquery)
     })
 
@@ -115,10 +117,10 @@ const Agenda = observer(() => {
             </Box>
             <Box m={2}>
                 {
-                    // tripStore.loadedEntries.map.......
-                    Array(5).fill(5).map((e: any) =>
+                    // Array(5).fill(5)
+                    tripStore.loadedEntries.map((e: any) =>
                         <Box my={2} key={uuidv4()}>
-                            <EntryItem />
+                            <EntryItem data={e} />
                         </Box>
                     )
                 }

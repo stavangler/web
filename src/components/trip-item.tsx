@@ -11,12 +11,13 @@ const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
             borderRadius: 0,
-            background: theme.palette.common.white
+            background: theme.palette.common.white,
             // maxWidth: 345,
         },
         stdButton: { width: 40, height: 40 }, // todo: move to common styles
         media: { height: 140 },
-        content: { margin: 16 },
+        header: { margin: 16 },
+        content: { margin: 16, minHeight: 120 },
         flexSplit: {
             display: 'flex',
             justifyContent: 'space-between'
@@ -36,15 +37,15 @@ const TripItem = (props: any) => {
     const theme = useTheme()
 
     return (
-        <Card className={classes.root} onClick={() => history.push(`trip/${props.data.id}`)}>
-            <CardActionArea>
+        <Card className={classes.root}>
+            <CardActionArea onClick={() => history.push(`trip/${props.data.id}`)}>
                 <CardMedia
                     className={classes.media}
                     image={props.data.imgUrl}
                     title="Contemplative Reptile"
                 />
                 <CardHeader
-                    className={classes.content}
+                    className={classes.header}
                     classes={{
                         title: classes.hTitle,
                         subheader: classes.hSubheader

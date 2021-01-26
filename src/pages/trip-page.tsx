@@ -27,7 +27,7 @@ const TripPage = (props: any) => {
             axis="vertical"
             menuBg={theme.palette.secondary.dark}
             children={[
-                { icon: <Icon.Clipboard color={icr} size={16} />, label: 'Agenda', content: <Agenda /> },
+                { icon: <Icon.Calendar color={icr} size={16} />, label: 'Agenda', content: <Agenda /> },
                 { icon: <Icon.Info color={icr} size={16} />, label: 'Information', content: <Information /> },
                 { icon: <Icon.Users color={icr} size={16} />, label: 'Participants', content: <Participants /> }
             ]} ></FlatTabs>

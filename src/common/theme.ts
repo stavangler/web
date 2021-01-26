@@ -80,8 +80,8 @@ export const theme = createMuiTheme({
                 button: {
                     borderRadius: '0 !important',
                     fontFamily: 'Arial',
-                    fontSize: '13px !important',
-                    fontWeight: 500,
+                    fontSize: '10px !important',
+                    fontWeight: 600,
                 },
                 html: { WebkitFontSmoothing: 'auto' },
             },

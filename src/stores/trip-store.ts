@@ -10,7 +10,6 @@ export const Trip = types.model("Trip", {
     description: types.string,
     imgUrl: types.string,
     date: types.string,
-    //...
 })
 
 // agenda entry
@@ -18,11 +17,11 @@ export const Entry = types.model("Entry", {
     id: types.identifierNumber,
     date: types.string,
     title: types.string,
-    description: types.string,
-    room: types.string,
+    description: types.maybeNull(types.string),
+    room: types.maybeNull(types.string),
+    speakers: types.array(types.string),
     starttime: types.string,
-    endtime: types.string,
-    //...
+    endtime: types.maybeNull(types.string),
 })
 
 export const TripStore = types
@@ -32,7 +31,6 @@ export const TripStore = types
         entries: types.map(Entry),
         selectedTrip: types.safeReference(Trip),
         selectedEntry: types.safeReference(Entry),
-
         // inEditMode: types.boolean
     })
     .views((self) => ({
@@ -88,7 +86,7 @@ export const TripStore = types
         const loadEntries = flow(function* loadEntries(query) {
             try {
                 const result = yield api().postAsync('trip/agenda', query)
-                // console.log(result)
+                //console.log(result)
                 setEntries(result)
             } catch (err) {
                 console.error("Failed to load entries", err)

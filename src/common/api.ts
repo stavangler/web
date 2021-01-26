@@ -30,7 +30,6 @@ const api = () => {
             }
 
             // console.log(options.body)
-
             const request = new Request(`${apiUrl}/${path}`, options)
 
             // fetch(request).then((r) => {
@@ -39,7 +38,9 @@ const api = () => {
             // })
 
             const response = await fetch(request)
-            return await response.json()
+            const res = await response.json()
+            console.log(res)
+            return res
         }
         // put = async (model) => {
         //     const headers = new Headers()
