@@ -11,10 +11,10 @@ const utils = {
     },
     filterColors: (): string[] => {
         return [
-            knowitColors.sand,
+            knowitColors.clay,
             knowitColors.flamingo,
             knowitColors.pear,
-            knowitColors.clay
+            knowitColors.mint
         ]
     }
 }

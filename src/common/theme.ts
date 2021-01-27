@@ -35,6 +35,7 @@ export const theme = createMuiTheme({
         action: {
             selected: knowitColors.clay,
             disabled: knowitColors.mint,
+            focus: knowitColors.pear
         },
         text: {
             primary: darken(knowitColors.forest, 0.2),

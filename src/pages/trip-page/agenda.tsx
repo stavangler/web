@@ -1,12 +1,13 @@
 import React, { useContext, useEffect, useRef } from 'react'
 import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles'
-import { Avatar, Box, Chip, IconButton, Typography } from '@material-ui/core'
+import { Avatar, Box, Chip, Divider, IconButton, Typography } from '@material-ui/core'
 import * as Icon from 'react-feather'
 import { v4 as uuidv4 } from 'uuid'
 import { tripStore } from '../../stores/trip-store'
 import { observer } from 'mobx-react'
 import EntryItem from '../../components/entry-item'
 import utils from '../../common/utils'
+import EntryEditItem from '../../components/entry-edit-item'
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -36,8 +37,8 @@ const useStyles = makeStyles((theme: Theme) =>
         daysContainer: {
             display: 'grid',
             gridAutoFlow: 'column',
-            margin: 2,
-            gridGap: 2,
+            margin: 1,
+            gridGap: 1,
             width: '100%',
             marginBottom: '1em'
         },
@@ -115,12 +116,22 @@ const Agenda = observer(() => {
             </Box>
             <Box m={2}>
                 {
-                    // Array(5).fill(5)
-                    tripStore.loadedEntries.map((e: any) =>
-                        <Box my={2} key={uuidv4()}>
-                            <EntryItem data={e} />
-                        </Box>
-                    )
+                    // EDIT ITEM TESTING...
+                    tripStore.loadedEntries.length ?
+                        <EntryEditItem data={tripStore.loadedEntries[0]} />
+                        :
+                        <></>
+                }
+                {
+                    tripStore.loadedEntries.length ?
+                        // Array(5).fill(5)
+                        tripStore.loadedEntries.map((e: any) =>
+                            <Box my={2} key={uuidv4()}>
+                                <EntryItem data={e} />
+                            </Box>
+                        )
+                        :
+                        <></>
                 }
             </Box>
         </Box>

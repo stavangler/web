@@ -57,6 +57,7 @@ const FlatTabs = (props: any) => {
             <div className={`${classes.menu} ${menuAxisClass}`} style={{ background: props.menuBg }}>
                 {
                     props.children.map((c: any, i: number) =>
+                        c.label ?
                         <IconButton size="small" className={`${classes.button} ${isDevice ? classes.bDevicePadding : classes.bPadding}`} key={uuidv4()} onClick={() => setIndex(i)}>
                             {
                                 isDevice ?
@@ -67,6 +68,8 @@ const FlatTabs = (props: any) => {
                                     </div>
                             }
                         </IconButton>
+                        :
+                        c
                     )
                 }
             </div>

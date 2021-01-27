@@ -5,6 +5,7 @@ import Participants from './trip-page/participants'
 import Information from './trip-page/information'
 import FlatTabs from '../components/flat-tabs'
 import * as Icon from 'react-feather'
+import { Divider } from '@material-ui/core'
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -20,16 +21,20 @@ const TripPage = (props: any) => {
     const theme = useTheme()
     const tripId = props.match.params.id
 
-    const icr = theme.palette.action.disabled
+    const color1 = theme.palette.action.disabled
+    const color2 = theme.palette.action.focus
 
     return (
         <FlatTabs
             axis="vertical"
             menuBg={theme.palette.secondary.dark}
             children={[
-                { icon: <Icon.Calendar color={icr} size={16} />, label: 'Agenda', content: <Agenda /> },
-                { icon: <Icon.Info color={icr} size={16} />, label: 'Information', content: <Information /> },
-                { icon: <Icon.Users color={icr} size={16} />, label: 'Participants', content: <Participants /> }
+                { icon: <Icon.Calendar color={color1} size={16} />, label: 'Agenda', content: <Agenda /> },
+                { icon: <Icon.Info color={color1} size={16} />, label: 'Information', content: <Information /> },
+                { icon: <Icon.Users color={color1} size={16} />, label: 'Participants', content: <Participants /> },
+                <Divider />,
+                { icon: <Icon.Edit color={color2} size={16} />, label: 'Edit day', content: <div>edit</div> },
+                { icon: <Icon.Plus color={color2} size={16} />, label: 'Add day', content: <div>add</div> },
             ]} ></FlatTabs>
     )
 }
